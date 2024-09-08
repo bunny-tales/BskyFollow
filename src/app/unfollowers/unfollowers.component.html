@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="section-left">
+        <!-- Seção 1: Formulário de Pesquisa -->
+        <div class="one">
+            <input [(ngModel)]="token" class="input" placeholder="Insira o Token" />
+            <input [(ngModel)]="usuario" class="input" placeholder="Insira o Nick" />
+            <button (click)="carregarDados()" class="btn">Pesquisar</button>
+        </div>
+        <!-- Seção 2: Resultado Subject -->
+        <div *ngIf="subject" class="two">
+            <img [src]="subject.avatar" class="avatar" alt="{{ subject.displayName }}" />
+            <div class="subject-info">
+                <h3>{{ subject.displayName }}</h3>
+                <span><b>Nick:</b> {{ subject.handle }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-right">
+        <h3>Mutuals que não seguem de volta</h3>
+        <h5 *ngIf="isLoading">Aguarde</h5>
+        <h5 *ngIf="hasAlert"> {{hasAlert}}</h5>
+        <div *ngFor="let follow of missingFollowers" class="follow-item">
+            <img [src]="follow.avatar" alt="Avatar" class="avatar">
+            <div class="subject-info">
+                <span><b>Nick: </b> {{ follow.handle }}</span>
+            </div>
+        </div>
+        <!-- <button (click)="unfollow(follow.handle)">Unfollow</button> -->
+    </div>
+</div>
